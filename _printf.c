@@ -1,65 +1,29 @@
 #include "main.h"
 
-void print_buff(char buff[], int *index_buff);
-
 /**
- * my_printf - Printf function
- * @form: format.
- * Return: Printed chars.
+ * _printf - Prints a formatted string to stdout.
+ * @format: The formatted string.
+ *
+ * Return: The number of characters printed to stdout,
+ * else -1 if @format is NULL.
  */
-int my_printf(const char *form, ...)
+int _printf(const char *format, ...)
 {
-	int idx, print_res = 0, total_printed_chars = 0;
-	int flag_val, width_val, precision_val, size_val, index_buff = 0;
-	va_list val_list;
-	char buff[BUFF_SIZE];
+	int characters_printed;
+	string_buffer buffer;
+	va_list args;
 
-	if (form == NULL)
-		return (-1);
+	if (format == NULL)
+		return (-1); /* Invalid format */
 
-	va_start(val_list, form);
+	va_start(args, format);
 
-	for (idx = 0; form && form[idx] != '\0'; idx++)
-	{
-		if (form[idx] != '%')
-		{
-			buff[index_buff++] = form[idx];
-			if (index_buff == BUFF_SIZE)
-				print_buff(buff, &index_buff);
-			total_printed_chars++;
-		}
-		else
-		{
-			print_buff(buff, &index_buff);
-			flag_val = get_flags(form, &idx);
-			width_val = get_width(form, &idx, val_list);
-			precision_val = get_precision(form, &idx, val_list);
-			size_val = get_size(form, &idx);
-			++idx;
-			print_res = handle_print(form, &idx, val_list, buff,
-				flag_val, width_val, precision_val, size_val);
-			if (print_res == -1)
-				return (-1);
-			total_printed_chars += print_res;
-		}
-	}
+	/* Initialize the string buffer to store the result */
+	init_string_buffer(&buffer);
 
-	print_buff(buff, &index_buff);
+	/* Get the result while keeping track of the number of characters printed */
+	characters_printed = custom_printf(&buffer, format, args);
 
-	va_end(val_list);
-
-	return (total_printed_chars);
-}
-
-/**
- * print_buff - Prints the contents of the buffer if it exists
- * @buff: Array of chars
- * @index_buff: Index at which to add the next char, represents the length.
- */
-void print_buff(char buff[], int *index_buff)
-{
-	if (*index_buff > 0)
-		write(1, &buff[0], *index_buff);
-
-	*index_buff = 0;
+	va_end(args);
+	return (characters_printed);
 }
