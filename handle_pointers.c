@@ -10,7 +10,7 @@
 *Returns:num of chars added to buffer
 */
 int handle_pointer(const format_specifier *spc, va_list args,
-		string_buffer *buff);
+		string_buffer *buff)
 {
 	char hex_str[17];
 	int printed_chars;

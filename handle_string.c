@@ -8,9 +8,8 @@
 *
 *Returns:num of chars added to buffer
 */
-int _string(
-	__attribute__((unused)) const format_specifier *spc,
-	va_list args, string_buffer *buff)
+int handle_string(const format_specifier *spc, va_list args,
+		string_buffer *buff)
 {
 	char *s;
 	int added_chars;
@@ -79,7 +78,7 @@ int handle_string_reversal(
  * Return: the number of characters appended to the string @buffer
  */
 int handle_rot13(const format_specifier *spc, va_list args,
-		string_buffer *buff);
+		string_buffer *buff)
 {
 	char *str, *dup_str;
 	int characters_added;
@@ -114,9 +113,8 @@ int handle_rot13(const format_specifier *spc, va_list args,
 *@buffer:buffer to hold result
 *Returns:num of chars added to buffer
 */
-int _custom_string(
-	__attribute__((unused)) const format_specifier * spc,
-	va_list args, string_buffer *buff)
+int handle_custom_string(const format_specifier *spc, va_list args,
+		string_buffer *buff)
 {
 	char hex_str[5];
 	char *str, *dup_str;

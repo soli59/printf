@@ -9,7 +9,7 @@
 *Returns:num of chars added to buffer
 */
 int handle_decimal(const format_specifier *spc, va_list args,
-		string_buffer *buff);
+		string_buffer *buff)
 {
 	int n = va_arg(args, int);
 	char res[21];
@@ -30,7 +30,7 @@ int handle_decimal(const format_specifier *spc, va_list args,
 *@buff:buffer to hold result
 *Returns:num of chars added to buffer
 */
-int handle_unsigned_int(const format_specifier *spc, va_list args,
+int handle_unsigned(const format_specifier *spc, va_list args,
 		string_buffer *buff)
 {
 	unsigned int n = va_arg(args, unsigned int);

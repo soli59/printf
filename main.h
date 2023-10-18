@@ -68,7 +68,7 @@ int handle_rot13(const format_specifier *spc, va_list args,
 		string_buffer *buff);
 int handle_string_reversal(const format_specifier *spc, va_list args,
 		string_buffer *buff);
-int handle_character(const format_specifier *spc, va_list args,
+int handle_char(const format_specifier *spc, va_list args,
 		string_buffer *buff);
 int handle_percent(const format_specifier *spc, va_list args,
 		string_buffer *buff);
@@ -101,7 +101,7 @@ char *_strdup(const char *s);
 void char_to_hex(char *buff, unsigned char x);
 void *_realloc(void *old_mem_blk, size_t old_size, size_t new_size);
 void *_memcpy(void *dest, const void *src, size_t n);
-void custom_free(void **ptr);
+void safely_free(void **ptr);
 #define safe_free(p) _free((void **) &(p))
 
 #endif /* MAIN_H */
