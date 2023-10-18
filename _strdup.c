@@ -10,22 +10,23 @@
  *
  * Return: A pointer to the duplicated string, NULL if it fails/
  */
-char *_strdup(const char *s)
+char *_strdup(const char *str)
 {
 	char *dup_str;
 	int i = 0;
 
-	if (s == NULL)
-		return (NULL);
+	if (str == NULL)
+		return (NULL); /* handle invalid string */
 
-	dup_str = malloc(_strlen(s) + 1);
+	dup_str = malloc(_strlen(str) + 1);
 
 	if (dup_str == NULL)
 		return (NULL);
 
-	while (s[i] != '\0')
+	/* duplicate string - a copy process */
+	while (str[i] != '\0')
 	{
-		dup_str[i] = s[i];
+		dup_str[i] = str[i];
 		i++;
 	}
 	dup_str[i] = '\0';

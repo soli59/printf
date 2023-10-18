@@ -1,45 +1,56 @@
 #include "main.h"
 
 /**
-*handle_hex_lower - add a lowercase hexadeciaml to buffer
-*
-*@spc:format specifier
-*@args:arguments list
-*@buff:buffer to hold result
-*Returns: the number of characters appended to the string buffer
-*/
-int handle_hex_lower(__attribute__((unused)) const format_specifier * spc,
-		va_list args, string_buffer *buff)
+ * handle_hex_lower - convert and append an integer in lower hexadecimal
+ * format
+ * @spec: format specifier information (unused)
+ * @args: arguments list
+ * @buffer: string buffer to store the result
+ *
+ * Return: the number of characters appended to the string buffer
+ */
+int handle_hex_lower(const format_specifier *spec, va_list args,
+		string_buffer *buffer)
 {
 	char hex_str[17];
-	int added_chars;
-	unsigned int x = va_arg(args, unsigned int);
-	size_t initial_length = buff->length;
+	int characters_added;
+	unsigned int n = va_arg(args, unsigned int);
+	size_t initial_length = buffer->length;
 
-	utob(x, hex_str, HEX);
-	append_string(buff, hex_str);
+	if (spec->sharp_flag)
+	{
+		append_string(buffer, "0x");
+	}
+	utob(n, hex_str, HEX);
+	append_string(buffer, hex_str);
 
-	added_chars = buff->length - initial_length;
-	return (added_chars);
+	characters_added = buffer->length - initial_length;
+	return (characters_added);
 }
 
 /**
-*handle_hex_upper - add a uppercase hexadeciaml to buffer
-*@spc:format specifier
-*@args:arguments list
-*@buff:buffer to hold result
-*Returns:num of chars added to buffer
-*/
-int handle_hex_upper(__attribute__((unused)) const format_specifier * spc,
-		va_list args, string_buffer *buff)
+ * handle_hex_upper - convert and append an integer in uppercase hexadecimal
+ * format
+ * @spec: format specifier information (unused)
+ * @args: arguments list
+ * @buffer: string buffer to store the result
+ *
+ * Return: the number of characters appended to the string buffer
+ */
+int handle_hex_upper(const format_specifier *spec, va_list args,
+		string_buffer *buffer)
 {
 	int i;
 	char hex_str[17];
-	int added_chars;
-	unsigned int x = va_arg(args, unsigned int);
+	int characters_added;
+	unsigned int n = va_arg(args, unsigned int);
 	size_t initial_length = buffer->length;
 
-	utob(x, hex_str, HEX);
+	if (spec->sharp_flag)
+	{
+		append_string(buffer, "0X");
+	}
+	utob(n, hex_str, HEX);
 	for (i = 0; hex_str[i] != '\0'; i++)
 	{
 		if (hex_str[i] >= 'a' && hex_str[i] <= 'f')
@@ -49,6 +60,6 @@ int handle_hex_upper(__attribute__((unused)) const format_specifier * spc,
 	}
 	append_string(buffer, hex_str);
 
-	added_chars = buffer->length - initial_length;
-	return (added_chars);
+	characters_added = buffer->length - initial_length;
+	return (characters_added);
 }

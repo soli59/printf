@@ -1,22 +1,25 @@
 #include "main.h"
 
 /**
- * rot13 - Encodes a string using ROT13
- * @s: String to encode
- * Return: Pointer to the encoded string
+ * rot13 - encodes a string using rot13
+ * @s: string to encode
+ * Return: pointer to encoded string
  */
 char *rot13(char *s)
 {
-	char *input = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char *output = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	int i, j;
+	char *map1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char *map2 = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	for (int i = 0; s[i] != '\0'; i++)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		char *pos = strchr(input, s[i]);
-
-		if (pos != NULL)
+		for (j = 0; map1[j] != '\0'; j++)
 		{
-			s[i] = output[pos - input];
+			if (s[i] == map1[j])
+			{
+				s[i] = map2[j];
+				break;
+			}
 		}
 	}
 

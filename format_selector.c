@@ -1,21 +1,23 @@
 #include "main.h"
 
 /**
- * select_format_handler - Selects the appropriate handler 4 format specifier
- * @specifier: The specific format specifier to match
- * @spec: A pointer 2 the format specifier struc containing specifier info
- * @args: The va_list of arguments
- * @buffer: Pointer to the string_buffer structure for output
+ * select_format_handler - selects the appropriate handler for a format
+ * specifier
+ * @specifier: the specific format specifier to match
+ * @spec: a pointer to the format specifier structure containing specifier
+ * information
+ * @args: the va_list of arguments
+ * @buffer: pointer to the string_buffer structure for output
  *
- * Description:
- * This function selects and invokes the appropriate handler func based on
- * the format specifier provided in the @spec parameter. It searches 4 matching
- * specifier in the 'format_specifir' arr and uses the associated handler func
- * to process the spec. If no match is found, it handles the spec by apending
- * it to the @buffer.
+ * Description: This function selects and invokes the appropriate handler
+ * function based on the format specifier provided in the @spec parameter.
+ * It searches for the matching specifier in the 'format_specifiers' array
+ * and uses the associated handler function to process the specifier. If no
+ * match is found, it handles the specifier as needed, such as appending it
+ * to the @buffer.
  *
- * Return: The func that handles the @specifier, or the number of char added
- * to the @buffer after the unknown specifier is written.
+ * Return: the function that handles the @specifier, else the number of
+ * characters added to the @buffer after the unknown specifier is written.
  */
 int select_format_handler(const char specifier, format_specifier *spec,
 		va_list args, string_buffer *buffer)
@@ -27,12 +29,12 @@ int select_format_handler(const char specifier, format_specifier *spec,
 	{
 		if (spec[i].specifier == specifier)
 		{
-			/* Invoke the appropriate function to handle the found specifier */
+			/* invoke the appropriate function to handle the found specifier */
 			return (spec[i].handler(&spec[i], args, buffer));
 		}
 	}
 
-	/* The specifier is not found; handle it as needed */
+	/* the specifier is not found, handle it as needed */
 	append_char(buffer, '%');
 	append_char(buffer, specifier);
 

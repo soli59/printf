@@ -1,46 +1,51 @@
 #include "main.h"
 
 /**
-*_precision - handles format specifiers precision level
-*@format: the formatted string
-*@spc:format specifier
-*@buff:buffer to hold result
-*
-*Returns:num of chars added to buffer
-*/
-int handle_precision(const char *format, format_specifier *spc,
-		string_buffer *buff)
+ * handle_precision - handles precision for format specifiers
+ * @format: the format string
+ * @spec: format specifier information
+ * @buffer: the string buffer to store the result
+ *
+ * Return: the number of characters added to the buffer
+ */
+int handle_precision(const char *format, format_specifier *spec,
+		string_buffer *buffer)
 {
-	int plevel = 0;
-	int added_chars = 0;
-	size_t initial_length = buff->length;
+	int precision = 0;
+	int characters_added = 0;
+	size_t initial_length = buffer->length;
 
-	format++;
+	format++; /* Skip the '.' character */
+
 	while (*format >= '0' && *format <= '9')
 	{
-		plevel = plevel * 10 + (*format - '0');
+		precision = precision * 10 + (*format - '0');
 		format++;
 	}
-	if (plevel > 0)
+
+	if (precision > 0)
 	{
-		spc->precision = plevel;
+		spec->precision = precision;
 
 		if (*format != '\0')
-			append_char(buff, *format);
+			append_char(buffer, *format);
 
-		while (plevel > 0)
+		while (precision > 0)
 		{
 			format++;
 			if (*format != '\0')
-				append_char(buff, *format);
-			plevel--;
+				append_char(buffer, *format);
+			precision--;
 		}
 	}
 	else if (*format == '*')
 	{
-		spc->precision = -1;
-		append_char(buff, *format);
+		/* Handle precision as an argument (e.g., %.3f) */
+		spec->precision = -1;
+
+		append_char(buffer, *format);
 	}
-	added_chars = buff->length - initial_length;
-	return (added_chars);
+
+	characters_added = buffer->length - initial_length;
+	return (characters_added);
 }

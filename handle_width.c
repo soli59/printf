@@ -1,19 +1,19 @@
 #include "main.h"
 
 /**
-*_width - handling width
-*@format:formatted string being handled.
-*@spc:format specifier to be processed.
-*@buff: the string buffer for output.
-*
-*Return: the number of characters added to the buffer
-*/
-int handle_width(const char *format, format_specifier *spc,
-		string_buffer *buff)
+ * handle_width - handle the width specifier
+ * @format: the format string being processed.
+ * @spec: the format specifier to process.
+ * @buffer: the string buffer for output.
+ *
+ * Return: the number of characters added to the buffer
+ */
+int handle_width(const char *format, format_specifier *spec,
+		string_buffer *buffer)
 {
-    int added_chars = 0;
-	int w = 0;
-	size_t initial_length = buff->length;
+	int width = 0;
+	int characters_added = 0;
+	size_t initial_length = buffer->length;
 
 	format++;
 
@@ -21,20 +21,20 @@ int handle_width(const char *format, format_specifier *spc,
 	{
 		while (*format >= '0' && *format <= '9')
 		{
-			w = w * 10 + (*format - '0');
+			width = width * 10 + (*format - '0');
 			format++;
 		}
 
-		spc->w = w;
+		spec->width = width;
 
 		/* Append width to the output buffer */
-		while (w > 0)
+		while (width > 0)
 		{
 			append_char(buffer, ' ');
-			w--;
+			width--;
 		}
 	}
 
-	added_chars = buff->length - initial_length;
-	return (added_chars);
+	characters_added = buffer->length - initial_length;
+	return (characters_added);
 }

@@ -15,17 +15,19 @@ char *_strchr(const char *s, int c)
 {
 	char *tmp_str = (char *) s;
 
+	/* handle empty string */
 	if (tmp_str == NULL)
 		return (NULL);
 
 	while (*tmp_str != '\0')
 	{
 		if (*tmp_str == c)
-			return (tmp_str);
+			return (tmp_str); /* match found */
 		tmp_str++;
 	}
+	/* return a pointer to the null byte if 'c' is a null byte. */
 	if (c == '\0')
 		return (tmp_str);
 
-	return (NULL);
+	return (NULL); /* no match found or end of string - return NULL */
 }
