@@ -72,8 +72,8 @@ int handle_char(const format_specifier *spc, va_list args,
 		string_buffer *buff);
 int handle_percent(const format_specifier *spc, va_list args,
 		string_buffer *buff);
-int handle_float(const format_specifier *spc, va_list args,
-		string_buffer *buff);
+//int handle_float(const format_specifier *spc, va_list args,
+//		string_buffer *buff);
 int handle_unsigned(const format_specifier *spc, va_list args,
 		string_buffer *buff);
 int handle_decimal(const format_specifier *spc, va_list args,
