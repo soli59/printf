@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
-*_hex_lower - add a lowercase hexadeciaml to buffer
+*handle_hex_lower - add a lowercase hexadeciaml to buffer
 *
 *@spc:format specifier
 *@args:arguments list
 *@buff:buffer to hold result
 *Returns: the number of characters appended to the string buffer
 */
-int _hex_lower(__attribute__((unused)) const format_specifier * spc,
+int handle_hex_lower(__attribute__((unused)) const format_specifier * spc,
 		va_list args, string_buffer *buff)
 {
 	char hex_str[17];
@@ -24,13 +24,13 @@ int _hex_lower(__attribute__((unused)) const format_specifier * spc,
 }
 
 /**
-*_hex_upper - add a uppercase hexadeciaml to buffer
+*handle_hex_upper - add a uppercase hexadeciaml to buffer
 *@spc:format specifier
 *@args:arguments list
 *@buff:buffer to hold result
 *Returns:num of chars added to buffer
 */
-int _hex_upper(__attribute__((unused)) const format_specifier * spc,
+int handle_hex_upper(__attribute__((unused)) const format_specifier * spc,
 		va_list args, string_buffer *buff)
 {
 	int i;

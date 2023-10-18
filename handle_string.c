@@ -78,9 +78,8 @@ int handle_string_reversal(
  *
  * Return: the number of characters appended to the string @buffer
  */
-int _rot13(
-	__attribute__((unused)) const format_specifier * spec,
-	va_list args, string_buffer *buffer)
+int handle_rot13(const format_specifier *spc, va_list args,
+		string_buffer *buff);
 {
 	char *str, *dup_str;
 	int characters_added;

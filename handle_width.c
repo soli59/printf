@@ -8,7 +8,7 @@
 *
 *Return: the number of characters added to the buffer
 */
-int _width(const char *format, format_specifier *spc,
+int handle_width(const char *format, format_specifier *spc,
 		string_buffer *buff)
 {
     int added_chars = 0;

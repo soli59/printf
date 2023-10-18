@@ -8,7 +8,7 @@
 *
 *Returns:pointer to new format
 */
-const char *parse_mods(const char *format, format_specifier *spc,
+const char *parse_modifiers(const char *format, format_specifier *spc,
 		string_buffer *buff)
 {
 	const char *format_tokens = "idfFcsSrRuxXop";

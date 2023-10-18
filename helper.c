@@ -8,8 +8,7 @@
  *
  * Returns: num of printed chars
  */
-int helper_printf(string_buffer *buff, const char *format, va_list args)
-{
+int custom_printf(string_buffer *buff, const char *format, va_list args);{
 	int printed_chars, n_chars;
 	format_specifier *spc;
 

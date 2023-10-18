@@ -8,8 +8,8 @@
 *
 *Returns:num of chars added to buffer
 */
-int _decimal(__attribute__((unused)) const format_specifier * spc,
-		va_list args, string_buffer *buff)
+int handle_decimal(const format_specifier *spc, va_list args,
+		string_buffer *buff);
 {
 	int n = va_arg(args, int);
 	char res[21];
@@ -30,8 +30,8 @@ int _decimal(__attribute__((unused)) const format_specifier * spc,
 *@buff:buffer to hold result
 *Returns:num of chars added to buffer
 */
-int _unsigned_int(__attribute__((unused)) const format_specifier * spc,
-		va_list args, string_buffer *buff)
+int handle_unsigned_int(const format_specifier *spc, va_list args,
+		string_buffer *buff)
 {
 	unsigned int n = va_arg(args, unsigned int);
 	char res[21];
@@ -53,8 +53,8 @@ int _unsigned_int(__attribute__((unused)) const format_specifier * spc,
 *@buff:buffer to hold result
 *Returns:num of chars added to buffer
 */
-int _binary(__attribute__((unused)) const format_specifier * spc,
-		va_list args, string_buffer *buff)
+int handle_binary(const format_specifier *spec, va_list args,
+		string_buffer *buffer)
 {
 	char res[65];
 	int added_chars;
@@ -69,14 +69,14 @@ int _binary(__attribute__((unused)) const format_specifier * spc,
 }
 
 /**
-*_octal - adds octal int to buffer
-*@spec:format specifier
+*handle_octal - adds octal int to buffer
+*@spc:format specifier
 *@args:arguments list
-*@buffer:buffer to hold result
+*@buff:buffer to hold result
 *Returns:num of chars added to buffer
 */
-int _octal(__attribute__((unused)) const format_specifier * spc,
-		va_list args, string_buffer *buff)
+int handle_octal(const format_specifier *spc, va_list args,
+		string_buffer *buff)
 {
 	unsigned int n = va_arg(args, unsigned int);
 	char res[23];

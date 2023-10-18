@@ -5,7 +5,7 @@
 *@s:string to be printed
 *@len:string length
 */
-void print_string_buff(const char *str, size_t len)
+void print_str_buffer(const char *str, size_t len)
 {
 	write(1, str, len);
 }

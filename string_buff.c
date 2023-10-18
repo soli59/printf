@@ -4,7 +4,7 @@
 * init_string_buffer - initializing buffer to hold output
 * @buff: dynamic storage placeholder
 */
-void init_string_buff(string_buffer *buff)
+void init_string_buffer(string_buffer *buff)
 {
 	buff->data = NULL;
 	buff->capacity = 0;

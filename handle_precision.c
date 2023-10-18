@@ -8,8 +8,8 @@
 *
 *Returns:num of chars added to buffer
 */
-int _precision(const char *format, format_specifier *spc,
-		string_buffer *buff)
+int handle_precision(const char *format, format_specifier *spc,
+		string_buffer *buff);
 {
 	int plevel = 0;
 	int added_chars = 0;
