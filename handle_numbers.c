@@ -24,7 +24,7 @@ int _decimal(__attribute__((unused)) const format_specifier * spc,
 }
 
 /**
-*handle_unsigned_int - add unsigned decimal int to buffer 
+*_unsigned_int - add unsigned decimal int to buffer 
 *@spc:format specifier
 *@args:arguments list
 *@buff:buffer to hold result

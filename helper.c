@@ -34,7 +34,7 @@ int helper_printf(string_buffer *buff, const char *format, va_list args)
 		}
 		format++;
 	}
-	print_str_buffer(buff->data, printed_chars);
+	print_string_buffer(buff->data, printed_chars);
 	safely_free(buff->data);
 	safely_free(spc);
 	return (printed_chars);
